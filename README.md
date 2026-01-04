@@ -50,6 +50,13 @@ total 26325768
 `curl -X POST http://mahadev-ms7d28:8000/v2/models/llama2vllm/generate -d '{"text_input": "What is Linux?", "parameters": {"stream": false, "temperature": 0, "max_tokens":256}}`  
 
 # NeMo Agent
+## Pre-requisite
+Export required environment variables.
+```
+export NVIDIA_API_KEY=<xxx>
+export TAVILY_API_KEY=<xxx>
+```
+
 ## Installation
 `pip install nvidia-nat nvidia-nat-langchain
 `
