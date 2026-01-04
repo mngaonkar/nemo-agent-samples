@@ -1,0 +1,30 @@
+functions:
+   # Add a tool to search wikipedia
+   wikipedia_search:
+      _type: wiki_search
+      max_results: 2
+
+llms:
+   # Tell NeMo Agent Toolkit which LLM to use for the agent
+   nim_llm:
+      _type: nim
+      model_name: meta/llama-3.1-70b-instruct
+      temperature: 0.0
+   local_triton_llm:
+     _type: openai
+     model_name: llama2vllm
+     base_url: http://mahadev-ms7d28:8000/v2/model/llama2vllm
+     api_key: dummy
+     temperature: 0.0
+
+workflow:
+   # Use an agent that 'reasons' and 'acts'
+   _type: react_agent
+   # Give it access to our wikipedia search tool
+   tool_names: [wikipedia_search]
+   # Tell it which LLM to use
+   llm_name: local_triton_llm
+   # Make it verbose
+   verbose: true
+   # Retry up to 3 times
+   parse_agent_response_max_retries: 3
